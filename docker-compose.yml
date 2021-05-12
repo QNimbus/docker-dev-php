@@ -1,0 +1,25 @@
+---
+  version: '3.7'
+
+  services:
+
+    php:
+      build:
+        context: ./
+        dockerfile: Dockerfile
+        args: {}
+      image: besquared/dev-joomla
+      container_name: php
+      restart: always
+      environment: []
+      ports: []
+      volumes:
+        - type: bind
+          source: ./docker/php/conf.d/xdebug.ini
+          target: /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+          read_only: true
+        - type: bind
+          source: ./docker/php/conf.d/error_reporting.ini
+          target: /usr/local/etc/php/conf.d/error_reporting.ini
+          read_only: true
+      depends_on: []
